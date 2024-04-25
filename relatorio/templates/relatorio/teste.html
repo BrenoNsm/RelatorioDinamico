@@ -1,0 +1,42 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block title %}Teste banco de dados{% endblock  %}
+
+{% block content %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/teste.css' %}">
+{% endblock  %}
+<br>
+<div class="card w-75 mx-auto" style="max-height: 800px; overflow-y: auto;">
+    <div class="card-header">
+        Dados
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            
+                <table>
+                    <thead>
+                        <tr>
+                            {% for column in columns %}
+                            <th><span class="th-text">{{ column }}</span></th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in results %}
+                        <tr>
+                            {% for value in row %}
+                            <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            
+        </blockquote>
+    </div>
+</div>
+
+{% endblock %}
