@@ -1,0 +1,16 @@
+{% extends "../base.html" %}
+
+{% block content %}
+
+<h1>Selecione a tabela que deseja visualizar:</h1>
+    <form method="post" action="{% url 'visualizacao' %}">
+        {% csrf_token %}
+        <select name="selected_table">
+            {% for table in tables %}
+                <option value="{{ table }}">{{ table }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Visualizar</button>
+    </form>
+
+{% endblock  %}
