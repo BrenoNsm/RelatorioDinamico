@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+sgp$mb&&)s)b&b5p#wgnhpjtg)+iet!bxi4f9ct85og$_dq2i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -123,3 +123,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# api/settings.py
+WSGI_APPLICATION = 'api.wsgi.app'
