@@ -1,13 +1,14 @@
 {% extends "../base.html" %}
 {% load static %}
 
-{% block title %}Teste banco de dados{% endblock  %}
+{% block title %}Teste visualizacao{% endblock %}
 
 {% block content %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/teste.css' %}">
-{% endblock  %}
+{% endblock %}
+
 <br>
 <div class="card w-75 mx-auto" style="max-height: 800px; overflow-y: auto;">
     <div class="card-header">
@@ -15,12 +16,44 @@
     </div>
     <div class="card-body">
         <blockquote class="blockquote mb-0">
+            {% if dataframe is not None %}
+            <h2>Dados do Arquivo:</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            {% for col in dataframe.columns %}
+                            <th class="th-text">{{ col }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for index, row in dataframe.iterrows %}
+                        <tr>
+                            {% for value in row %}
+                            <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
             
-                <table>
+            {% if selected_table %}
+            <h2>Dados da Tabela Selecionada ({{ selected_table }}):</h2>
+            <select name="" id="" style="width: 250px;">
+                {% for column in columns %}
+                <option>{{ column }}</option>
+                {% endfor %}
+            </select>            
+            </div>
+            <div class="table-responsive">
+                <table class="table">
                     <thead>
                         <tr>
                             {% for column in columns %}
-                            <th><span class="th-text">{{ column }}</span></th>
+                            <th class="th-text">{{ column }}</th>
                             {% endfor %}
                         </tr>
                     </thead>
@@ -34,9 +67,12 @@
                         {% endfor %}
                     </tbody>
                 </table>
-            
+            </div>
+            {% endif %}
         </blockquote>
     </div>
 </div>
+
+
 
 {% endblock %}

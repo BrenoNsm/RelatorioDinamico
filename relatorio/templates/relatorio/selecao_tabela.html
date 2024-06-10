@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Selecione a tabela que deseja visualizar:</h1>
+<h1>Selecione Do Banco de Dados:</h1>
     <form method="post" action="{% url 'visualizacao' %}">
         {% csrf_token %}
         <select name="selected_table">
@@ -12,5 +12,13 @@
         </select>
         <button type="submit">Visualizar</button>
     </form>
+
+    <h1>Enviar um csv:</h1>
+    <form method="post" action="{% url 'visualizacao' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file_upload">
+        <button type="submit">Visualizar</button>
+    </form>
+    
 
 {% endblock  %}
